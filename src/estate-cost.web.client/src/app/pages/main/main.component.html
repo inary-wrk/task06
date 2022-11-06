@@ -1,0 +1,35 @@
+
+<!--&lt;!&ndash;<button type="button" id="exel-upload-file" (change)="uploadFile($event)">Загрузить файл</button>&ndash;&gt;-->
+
+
+<!--  <div class="container">-->
+<!--    <ya-map [center]="[55.751952, 37.600739]" [zoom]="8" [state]="{ controls: [] }">-->
+<!--      <ya-clusterer [options]="{gridSize: 32}">-->
+<!--        <ya-placemark (yaclick)="getMapPanelInfo(item.purchaseId)" *ngFor="let item of mapContents"-->
+<!--                      [geometry]="item.coordinates"></ya-placemark>-->
+<!--      </ya-clusterer>-->
+<!--    </ya-map>-->
+<!--  </div>-->
+
+<div class="map-page-container">
+
+    <div class="map" id="map">
+
+        <ya-map [center]="[55.751952, 37.600739]" [zoom]="8" [state]="{ controls: [] }">
+            <ya-clusterer [options]="{gridSize: 32}">
+<!--                <ya-placemark (yaclick)="getMapPanelInfo(1)" *ngFor="let item of mapContents"-->
+<!--                            [geometry]="mapContents"></ya-placemark>-->
+            </ya-clusterer>
+        </ya-map>
+
+    </div>
+
+  <app-under-map-layout></app-under-map-layout>
+
+  <div class="notifications-block">
+    <div class="notification green">Стоимость объекта успещно пересчитана</div>
+    <div class="notification yellow">Сервер не отвечает: повторите действие</div>
+    <div class="notification red">Невозможно рассчитать стоимость</div>
+  </div>
+
+</div>

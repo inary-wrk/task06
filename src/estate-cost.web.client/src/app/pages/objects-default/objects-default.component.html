@@ -1,0 +1,72 @@
+<div class="default-objects-panel-content">
+  <div class="objects-panel-head" [class.minimized]="getObjectWindowMinimize()">
+    <div class="head">
+      Мои объекты
+      <span class="head-obj-count">42 объекта</span>
+      <button class="minimize-button" (click)="setObjectWindowMinimize(null)" [class.active]="getObjectWindowMinimize()">
+        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1.5L6 6.5L11 1.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="objects-search-block" [class.hide]="getObjectWindowMinimize()">
+    <form method="post">
+      <div class="form-item">
+        <mat-form-field appearance="legacy">
+          <mat-label>Поиск</mat-label>
+          <input type="text" name="search-query" matInput>
+        </mat-form-field>
+
+        <button type="submit" class="search-submit">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_75_699)">
+              <path
+                d="M8.33333 14.1667C11.555 14.1667 14.1667 11.555 14.1667 8.33333C14.1667 5.11167 11.555 2.5 8.33333 2.5C5.11167 2.5 2.5 5.11167 2.5 8.33333C2.5 11.555 5.11167 14.1667 8.33333 14.1667Z"
+                stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M17.5 17.5L12.5 12.5" stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_75_699">
+                <rect width="20" height="20" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="objects-list-wrap" [class.hide]="getObjectWindowMinimize()">
+    <div class="objects-list">
+
+      <div *ngFor="let item of flatItem?.estatePool" (click)="
+      setObjectCardWindowOpen(true);
+      setObjectWindowMinimize(true);
+      setObjectWindowOnTop(true);
+      setShowAnalogWindow(false);
+      setObjectWindowMobileVisible(false)"
+           class="objects-list-item">
+        <div class="title">{{item.location}}</div>
+
+        <div class="specs">
+          {{item.apartmentArea}} м² • {{item.rooms}} комнаты • {{item.apartamentFloor}} этаж
+        </div>
+
+        <div class="price">
+          {{item.priceRUB}} ₽
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="objects-panel-bottom" [class.hide]="getObjectWindowMinimize()">
+    <div class="objects-panel-buttons">
+      <button type="button" class="button outline-button upload-button" id="upload-file">Загрузить новый файл</button>
+      <button type="button" class="button export-button">Экспортировать</button>
+    </div>
+  </div>
+</div>

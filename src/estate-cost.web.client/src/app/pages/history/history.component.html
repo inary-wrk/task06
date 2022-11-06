@@ -1,0 +1,84 @@
+<div [class.onTop]="getHistoryWindowOnTop()" [class.mobileShow]="!getHistoryWindowOnTop()" class="info-window history-info-window">
+  <div class="head">
+    История запросов
+    <button class="delete-all-link">Удалить все</button>
+  </div>
+
+  <div class="objects-search-block">
+    <form method="post">
+      <div class="form-item">
+        <mat-form-field appearance="legacy">
+          <mat-label>Поиск</mat-label>
+          <input type="text" name="search-query" matInput>
+        </mat-form-field>
+
+        <button type="submit" class="search-submit">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_75_699)">
+              <path
+                d="M8.33333 14.1667C11.555 14.1667 14.1667 11.555 14.1667 8.33333C14.1667 5.11167 11.555 2.5 8.33333 2.5C5.11167 2.5 2.5 5.11167 2.5 8.33333C2.5 11.555 5.11167 14.1667 8.33333 14.1667Z"
+                stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M17.5 17.5L12.5 12.5" stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_75_699">
+                <rect width="20" height="20" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="queries-history-list-container">
+    <div class="queries-history-list">
+      <div class="queries-history-list-item" (click)="setValues(item.id)" *ngFor="let item of historyItems">
+        <div class="date">{{item.created | date: 'd MMMM, y'}}</div>
+
+        <div class="objects">
+          <span>{{item.estateQuntity}} объектов</span>
+
+          <button class="delete-icon-button">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_150_850)">
+                <path d="M3.33331 5.8335H16.6666" stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M8.33331 9.1665V14.1665" stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M11.6667 9.1665V14.1665" stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path
+                  d="M4.16669 5.8335L5.00002 15.8335C5.00002 16.2755 5.17562 16.6994 5.48818 17.012C5.80074 17.3246 6.22466 17.5002 6.66669 17.5002H13.3334C13.7754 17.5002 14.1993 17.3246 14.5119 17.012C14.8244 16.6994 15 16.2755 15 15.8335L15.8334 5.8335"
+                  stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path
+                  d="M7.5 5.83333V3.33333C7.5 3.11232 7.5878 2.90036 7.74408 2.74408C7.90036 2.5878 8.11232 2.5 8.33333 2.5H11.6667C11.8877 2.5 12.0996 2.5878 12.2559 2.74408C12.4122 2.90036 12.5 3.11232 12.5 3.33333V5.83333"
+                  stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_150_850">
+                  <rect width="20" height="20" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="info-window-close-button" (click)="setHistoryWindowOpen()">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_75_3680)">
+        <path d="M15 5L5 15" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 5L15 15" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_75_3680">
+          <rect width="20" height="20" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
+  </button>
+</div>

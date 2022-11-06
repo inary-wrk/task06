@@ -1,0 +1,74 @@
+<div class="history-objects-panel-content">
+  <div class="objects-panel-head">
+    <div class="head">
+      <button class="back-icon-button"
+              (click)="setValues()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_75_3853)">
+            <path d="M15 6L9 12L15 18" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_75_3853">
+              <rect width="24" height="24" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </button>
+      <span>{{historyItems?.created | date: 'd MMMM, y'}}</span>
+      <span class="head-obj-count">3 объекта</span>
+    </div>
+  </div>
+
+  <div class="objects-search-block">
+    <form method="post">
+      <div class="form-item">
+        <mat-form-field appearance="legacy">
+          <mat-label>Поиск</mat-label>
+          <input type="text" name="search-query" matInput>
+        </mat-form-field>
+
+        <button type="submit" class="search-submit">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_75_699)">
+              <path
+                d="M8.33333 14.1667C11.555 14.1667 14.1667 11.555 14.1667 8.33333C14.1667 5.11167 11.555 2.5 8.33333 2.5C5.11167 2.5 2.5 5.11167 2.5 8.33333C2.5 11.555 5.11167 14.1667 8.33333 14.1667Z"
+                stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M17.5 17.5L12.5 12.5" stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_75_699">
+                <rect width="20" height="20" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="objects-list-wrap">
+    <div class="objects-list" *ngFor="let item of historyItems?.estatePool">
+      <div class="objects-list-item">
+
+        <div class="title">{{item.location}}</div>
+
+        <div class="specs">
+          {{item.apartmentArea}} м² • {{item.rooms}} комнат • {{item.apartamentFloor}} этаж
+        </div>
+
+        <div class="price">
+          {{item.priceRUB}} ₽
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="objects-panel-bottom">
+    <div class="objects-panel-buttons">
+      <button type="button" class="button full-width">Экспортировать</button>
+    </div>
+  </div>
+</div>

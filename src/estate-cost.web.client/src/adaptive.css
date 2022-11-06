@@ -1,0 +1,234 @@
+
+@media screen and (max-width:1180px) {
+    
+    .hide {
+        display: none !important;
+    }
+
+    .objects-panel {
+        width:100%;
+        width:calc(100vw - 40px);
+        top: auto;
+        bottom: 20px;
+        max-height: 66vh;
+    }
+
+    .objects-list {
+        max-height: calc(66vh - 260px);
+    }
+
+    .right-map-content-block {
+        z-index: 98;
+    }
+
+    .sources-block {
+        top: 20px;
+        left: 20px;
+        z-index: 98;
+    }
+
+    .minimize-button {
+        display: inline-block;
+        vertical-align: middle;
+        outline: none;
+        background:transparent;
+        border:0;
+        padding:0;
+        margin:0 0 0 18px;
+        transform: rotate(0deg);
+    }
+
+    .minimize-button.active {
+        transform: rotate(180deg);
+    }
+
+    .objects-panel-head.minimized {        
+        /*padding-bottom: 76px;*/
+    }
+
+    .objects-panel .objects-panel-head.minimized .head {
+        padding-bottom: 0;
+    }
+
+    .info-window {
+        position: fixed;
+        top: auto;
+        right: auto;
+        left: 20px;
+        bottom: 110px;
+        width: 100%;
+        width:calc(100vw - 40px);
+        max-height: calc(100vh - 130px);
+    }
+
+    .object-card-info-window-content-container {
+        max-height: calc(100vh - 380px);
+        margin-bottom: 20px;
+        overflow-y: auto;
+    }
+
+    .info-window.analog-info-window {
+        bottom:242px;
+    }
+
+}
+
+
+@media screen and (max-width:767px) {
+
+    .objects-panel .objects-panel-head.minimized .head {
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+
+    .info-window .info-window-close-button {
+        right:11px;
+    }
+
+    .info-window {
+        bottom:100px;
+        padding: 16px 16px;
+    }
+
+    .objects-panel {
+        padding:16px 16px;
+        margin:0;
+    }
+
+    .objects-panel .head {
+        font-size: 18px;
+    }
+
+    .objects-search-block .form-item {
+        margin-bottom: 0;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 11px 16px;
+    }
+
+    .show-history-button {
+        font-size: 0;
+        width: 48px;
+        background:#fff url(../src/assets/images/history-icon2.svg) no-repeat center center !important;
+    }
+
+    .logout-button {
+        font-size: 0;
+        width: 48px;
+        background:#fff url(../src/assets/images/exit-icon2.svg) no-repeat center center !important;
+    }
+
+    .export-button {
+        font-size: 0;
+        width: 48px;
+        background:#2328B0 url(../src/assets/images/download-file-icon.svg) no-repeat center center !important;
+        width: 50px !important;
+    }
+
+    .upload-button {
+        flex:1 auto;
+        margin-right: 16px;
+    }
+
+    .object-card-info-window .head, .analog-info-window .head {
+        font-size: 14px;
+        padding: 0 42px 0 0;
+    }
+
+    .objects-list {
+        padding-top:16px;
+    }
+
+    .objects-list-item .title {
+        font-size: 14px;
+    }
+
+    .objects-list-item .title {
+        font-size: 14px;
+    }
+
+    .objects-list-item .price {
+        font-size: 14px;
+    }
+
+    .form-item .mat-checkbox .mat-checkbox-label {
+        font-size: 14px;
+    }
+
+    .the-accordeon .mat-expansion-panel-header {
+        padding:15px 5px;
+    }
+
+    .objects-list-item {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .objects-list-wrap:after {
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
+        bottom: 62px;
+        z-index: 8;
+    }
+
+    .objects-panel-bottom {
+        padding:16px 16px;
+    }
+
+    .object-card-info-window-content-container {
+        margin-bottom: 0;
+    }
+
+    .object-card-info-total .total {
+        margin-bottom: 12px;
+    }
+
+    .object-card-info-total .form-item {
+        margin-bottom: 18px;
+    }
+
+    .expansion-panel-content .form-item {
+        padding: 10px 5px 10px 5px;
+    }
+
+    .info-window.analog-info-window {
+        bottom:225px;
+    }
+
+    .analog-window-bottom {
+        padding-top:10px;
+    }
+
+    .modal .title {
+        font-size: 18px !important;
+    }
+
+    .sourcesDropdown + * .form-item {
+        margin: 0 0 10px 0;
+    }
+
+    .sourcesDropdown + * .mat-menu-panel {
+        padding: 14px 16px 0px 16px;
+    }
+
+    .history-info-window .head {
+        padding: 0 35px 16px 0;
+        font-size: 16px;
+    }
+
+    .queries-history-list-item {
+        align-items:center;
+    }
+
+    .queries-history-list-item .date {
+        font-size: 14px;
+    }
+
+    .info-window.history-info-window .info-window-close-button {
+        top:12px;
+    }
+
+}

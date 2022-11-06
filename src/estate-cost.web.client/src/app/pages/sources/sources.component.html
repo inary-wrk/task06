@@ -1,0 +1,25 @@
+<div class="sources-block dropdown-container">
+
+  <button class="button white-button dropdown-button" type="button" mat-button [matMenuTriggerFor]="sourcesDropdown">
+    Источники
+  </button>
+
+  <div class="dropdown sources-dropdown-block">
+    <mat-menu #sourcesDropdown="matMenu" backdropClass="sourcesDropdown">
+
+      <div class="form-item" (click)="$event.stopPropagation();">
+        <mat-checkbox checked="checked" class="source1">Яндекс.Недвижимость</mat-checkbox>
+      </div>
+      <div class="form-item" (click)="$event.stopPropagation();">
+        <mat-checkbox class="source2">Авито</mat-checkbox>
+      </div>
+      <div class="form-item" (click)="$event.stopPropagation();">
+        <mat-checkbox class="source3">Циан</mat-checkbox>
+      </div>
+      <div class="form-item" (click)="$event.stopPropagation();">
+        <mat-checkbox class="source4">ДомКлик</mat-checkbox>
+      </div>
+
+    </mat-menu>
+  </div>
+</div>

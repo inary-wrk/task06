@@ -1,0 +1,83 @@
+<div [class.onTop]="getAnalogWindowOnTop()" [class.mobileShow]="!getAnalogWindowOnTop()" class="info-window analog-info-window">
+  <div class="head">
+    Балашиха, бульвар Победы имени героя советского союза Иванова Ивана, д. 8, кв. 12
+    <span class="head-obj-count">Аналог</span>
+  </div>
+
+  <div class="object-card-info-window-content-container">
+    <div class="object-card-info-window-content">
+      <mat-accordion class="the-accordeon object-card-accordeon" multi>
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header>
+            <div class="form-item" (click)="$event.stopPropagation();">
+              <mat-checkbox class="parameters">Параметры объекта</mat-checkbox>
+            </div>
+          </mat-expansion-panel-header>
+
+          <div class="expansion-panel-content">
+            <div class="form-item checkbox-and-description">
+              <mat-checkbox class="parameters">Местоположение</mat-checkbox>
+
+              <span class="description">
+                                        Балашиха, бульвар Победы имени героя советского союза Иванова Ивана, д. 5, кв. 42
+                                    </span>
+            </div>
+
+            <div class="form-item checkbox-and-description">
+              <mat-checkbox class="parameters">Количество комнат</mat-checkbox>
+
+              <span class="description">
+                                        3
+                                    </span>
+            </div>
+
+            <div class="form-item checkbox-and-description">
+              <mat-checkbox class="parameters">Сегмент</mat-checkbox>
+
+              <span class="description">
+                                        Современное жилье
+                                    </span>
+            </div>
+
+            <div class="form-item checkbox-and-description">
+              <mat-checkbox class="parameters">Этажность дома</mat-checkbox>
+
+              <span class="description">
+                                        24
+                                    </span>
+            </div>
+
+            <div class="form-item checkbox-and-description">
+              <mat-checkbox class="parameters">Материал стен дома</mat-checkbox>
+
+              <span class="description">
+                                        Кирпич
+                                    </span>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+  <div class="analog-window-bottom">
+    <mat-slide-toggle checked>
+      Учитывать при расчете стоимости
+    </mat-slide-toggle>
+  </div>
+
+  <button class="info-window-close-button" (click)="setAnalogWindowOpen(false)">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_75_3680)">
+        <path d="M15 5L5 15" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 5L15 15" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_75_3680">
+          <rect width="20" height="20" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
+  </button>
+</div>

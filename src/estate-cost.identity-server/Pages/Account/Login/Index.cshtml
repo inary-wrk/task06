@@ -1,0 +1,159 @@
+@page
+@model estate_cost.identity_server.Pages.Login.Index
+
+
+
+<div class="authorization-block">
+    <div class="head">Авторизация</div>
+
+    <form method="post">
+        <div class="form-item">
+            <label>E-mail</label>
+            <input class="error" type="email" name="email" placeholder="Введите e-mail">
+
+            <div class="error-message active">
+                Электронная почта и пароль не совпадают
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label>Пароль</label>
+            <input type="password" name="password" placeholder="Введите пароль">
+
+            <button type="button" class="show-password-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_119_1236)">
+                        <path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M22 12C19.333 16.667 16 19 12 19C8 19 4.667 16.667 2 12C4.667 7.333 8 5 12 5C16 5 19.333 7.333 22 12Z" stroke="#7E7E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_119_1236">
+                            <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </button>
+
+            <div class="error-message">
+                Электронная почта и пароль не совпадают
+            </div>
+        </div>
+
+        <div class="form-item form-item-links">
+            <label><input type="checkbox" name="remember" /><span>Запомнить меня?</span></label>
+
+            <a href="#" class="forgot-password-link">Забыли пароль?</a>
+        </div>
+
+        <div class="form-item form-item-submit">
+            <button class="button" type="submit">Войти</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--Удалить этот блок после переноса переменных в блок выше-->
+<!--
+<div style="display:none !important">
+
+<div class="login-page">
+    <div class="lead">
+        <h1>Login</h1>
+        <p>Choose how to login</p>
+    </div>
+
+    <partial name="_ValidationSummary" />
+
+    <div class="row">
+
+        @if (Model.View.EnableLocalLogin)
+        {
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Local Account</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <form asp-page="/Account/Login/Index">
+                            <input type="hidden" asp-for="Input.ReturnUrl" />
+
+                            <div class="form-group">
+                                <label asp-for="Input.Username"></label>
+                                <input class="form-control" placeholder="Username" asp-for="Input.Username" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Password"></label>
+                                <input type="password" class="form-control" placeholder="Password" asp-for="Input.Password" autocomplete="off">
+                            </div>
+                            
+                            @if (Model.View.AllowRememberLogin)
+                            {
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" asp-for="Input.RememberLogin">
+                                        <label class="form-check-label" asp-for="Input.RememberLogin">
+                                            Remember My Login
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                            
+                            <button class="btn btn-primary" name="Input.Button" value="login">Login</button>
+                            <button class="btn btn-secondary" name="Input.Button" value="cancel">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.View.VisibleExternalProviders.Any())
+        {
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>External Account</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-inline">
+                            @foreach (var provider in Model.View.VisibleExternalProviders)
+                            {
+                                <li class="list-inline-item">
+                                    <a class="btn btn-secondary"
+                                       asp-page="/ExternalLogin/Challenge"
+                                       asp-route-scheme="@provider.AuthenticationScheme"
+                                       asp-route-returnUrl="@Model.Input.ReturnUrl">
+                                        @provider.DisplayName
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (!Model.View.EnableLocalLogin && !Model.View.VisibleExternalProviders.Any())
+        {
+            <div class="alert alert-warning">
+                <strong>Invalid login request</strong>
+                There are no login schemes configured for this request.
+            </div>
+        }
+    </div>
+</div>
+
+</div>
+
+-->
+
+

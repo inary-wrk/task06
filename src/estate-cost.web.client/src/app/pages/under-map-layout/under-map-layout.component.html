@@ -1,0 +1,34 @@
+<!--<div class="map-content-container">-->
+
+<div class="objects-panel">
+    <!--    Блок слева стартовый-->
+    <app-objects-start *ngIf="getShowStartObjectPanel()"></app-objects-start>
+
+
+    <!--    Блок слева обычный с объектами-->
+    <app-objects-default *ngIf="getDefaultObjectsPanelContentShow()"></app-objects-default>
+
+    <!--    Блок слева после нажатия на исторический объект-->
+    <app-objects-from-history *ngIf="getHistoryObjectsPanelContentShow()"></app-objects-from-history>
+
+
+  </div>
+  <!--  Блок источников-->
+<!--  <app-sources></app-sources>-->
+
+
+  <div class="right-map-content-block">
+    <button class="button white-button show-history-button" type="button" (click)="setHistoryWindowOpen(true); setObjectWindowMobileVisible(true)">История запросов</button>
+
+    <button class="button white-button white-red-button logout-button" type="button" (click)="openLogoutDialog()">Выйти</button>
+<!--    Блок справа объектов истории-->
+    <app-history *ngIf="getHistoryWindowOpen()"></app-history>
+
+<!--    Блок справа после нажатия на один из объектов-->
+    <app-objects-id *ngIf="getObjectCardWindowOpen()"></app-objects-id>
+
+    <app-objects-analog *ngIf="getAnalogWindowOpen()"></app-objects-analog>
+
+  </div>
+
+

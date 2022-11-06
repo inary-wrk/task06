@@ -1,0 +1,43 @@
+
+.modal {
+    position: relative;
+    font-family: "Inter", sans-serif;
+    padding:16px 0px 10px 0;
+    width:400px;
+    max-width: 100%;
+}
+
+.modal-content {
+
+}
+
+.modal .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2em;
+    color: #000000;
+    padding:0 0 24px 0;
+    text-align: center;
+}
+
+.modal-content .button {
+    margin:0 auto;
+    width:120px;
+    text-align: center;
+}
+
+.modal-close-button {
+    display: block;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    z-index: 9;
+    outline: none;
+    border:0;
+    background:none;
+}
+
+.modal-close-button:hover {
+    opacity: 0.8;
+    cursor:pointer;
+}

@@ -1,0 +1,160 @@
+
+.authorization-page {
+    background: #1C218C;
+    width:57.5%;
+    color: #FFFFFF;
+    position: relative;
+    min-height: 100vh;
+    padding:0 60px 0 60px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+}
+
+.authorization-page-header-container {
+    position: relative;
+    padding:27.3vh 0 0 0;
+}
+
+.authorization-page-header {
+    text-align: right;
+    position: relative;
+}
+
+.authorization-page-header .title {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1.15em;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin:0;
+    padding:0 0 20px 0;
+}
+
+.authorization-page-header .subtitle {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.4em;
+    color:rgba(255,255,255,0.5);
+}
+
+.authorization-block {
+    width:360px;
+    max-width:100%;
+    color: #000;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 9;
+    margin:0 0 0 120px;
+    padding-top: 10px;
+    text-align: left;
+}
+
+.authorization-block .head {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.2em;
+    color: #000000;
+    padding:0 0 32px 0;
+}
+
+
+.authorization-page-footer {
+    margin:auto 0 0 0;
+    padding:0 0 50px 0;
+}
+
+.authorization-page-footer .footer-logos {
+    display: flex;
+    flex-flow:row wrap;
+    justify-content: flex-end;
+    align-items:center;
+}
+
+.authorization-page-footer .footer-logos div {
+    display: inline-block;
+    vertical-align: middle;
+    margin:0 0 10px 43px;
+}
+
+
+/*adaptive*/
+
+@media screen and (max-width:1180px) {
+    
+    body {
+        overflow-x: hidden;
+    }
+
+    .authorization-page {
+        width:100%;
+        background:transparent;
+        min-height: 0;
+    }
+
+    .authorization-page-header-container {
+        position: relative;
+        padding:10vh 0 0 0;
+    }
+
+    .authorization-block {
+        position: relative;
+        top:0;
+        left:0;
+        margin:0;        
+        margin: 40px auto 0 auto;
+    }
+
+    .authorization-block .head {text-align: right;font-size: 22px;}
+
+    .form-item label {}
+
+    .forgot-password-link {}
+
+    .authorization-page-header .title {color:#000;}
+
+    .authorization-page-header .subtitle {color:#000;}
+
+    .authorization-page-header {text-align: center;}
+
+    .authorization-block .head {text-align: center;}
+
+    .authorization-page-footer .footer-logos {justify-content: center;}
+    .footer-logos svg {display: none;}
+
+    .authorization-page-header .title {
+        font-size: 40px;
+    }
+
+}
+
+@media screen and (max-width:767px) {
+
+    .authorization-page {
+        padding:0 15px 0 15px;
+    }
+
+    .authorization-page-header-container {
+        padding:30px 0 0 0;
+    }
+
+    .authorization-block {
+        width:auto;
+        margin: 25px 0 0 0;
+    }    
+
+    .authorization-page-header .title {
+        font-size: 28px;
+    }
+
+    .authorization-page-header .subtitle {
+        font-size: 18px;
+    }
+    
+    .authorization-page-header br {display: none;}
+
+    
+
+}

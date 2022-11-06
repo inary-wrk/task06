@@ -1,0 +1,14 @@
+
+
+.map-page-container {
+    font-family: "Inter", sans-serif;
+    position: relative;
+}
+
+.map {
+    width:100vw;
+    height:100vh;
+    /*background:url(../../../assets/images/sample-map.jpg);*/
+    background-size:cover;
+}
+
