@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  estate-cost.web.api:
+    image: ${DOCKER_REGISTRY-}estatecostwebapi
+    build:
+      context: .
+      dockerfile: src/estate-cost.web.api/Dockerfile
+    depends_on: 
+      - estate-cost.identity-server
+      - estate-cost.db.main
+
+
+  estate-cost.identity-server:
+    image: ${DOCKER_REGISTRY-}estatecostidentityserver
+    build:
+      context: .
+      dockerfile: src/estate-cost.identity-server/Dockerfile
+    depends_on:
+      - estate-cost.db.main
+
+
+  estate-cost.web.bff:
+    image: ${DOCKER_REGISTRY-}estatecostwebbff
+    build:
+      context: .
+      dockerfile: src/estate-cost.web.bff/Dockerfile
+    depends_on:
+      - estate-cost.web.api
+      - estate-cost.identity-server
+
+  estate-cost.db.main:
+    image: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+
+volumes:
+  pgdata:
