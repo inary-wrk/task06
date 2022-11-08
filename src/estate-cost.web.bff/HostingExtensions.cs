@@ -1,6 +1,9 @@
 using Duende.Bff.Yarp;
 using estate_cost.web.bff.Configuration;
+using IdentityModel;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Serilog;
 
 namespace estate_cost.web.bff
@@ -13,22 +16,14 @@ namespace estate_cost.web.bff
 
             var appSettings = builder.Configuration.Get<AppSettings>();
 
+            builder.Services.AddControllers();
+            builder.Services.AddSpaStaticFiles(opt => opt.RootPath = "wwwroot");
             builder.Services.AddRazorPages();
 
-            builder.Services.AddControllers();
-
             // add BFF services and server-side session management
-            builder.Services.AddBff()
-                .AddRemoteApis();
+            builder.Services.AddBff();
 
-            var yarpBuilder = builder.Services
-                .AddReverseProxy()
-                .AddBffExtensions();
-
-            //builder.Services.AddUserAccessTokenHttpClient("api_client", configureClient: client =>
-            //{
-            //    client.BaseAddress = new Uri("https://localhost:5002/");
-            //});
+            builder.AddYarpReverseProxy();
 
             builder.Services.AddAuthentication(options =>
                 {
@@ -40,15 +35,17 @@ namespace estate_cost.web.bff
                 {
                     options.ExpireTimeSpan = TimeSpan.FromHours(8);
                     options.Cookie.Name = "__Host-bff";
-                    options.Cookie.SameSite = SameSiteMode.Strict;
+                    //options.Cookie.SameSite = SameSiteMode.Strict;
                 })
                 .AddOpenIdConnect("oidc", options =>
                 {
                     options.Authority = appSettings.AUTHORITY_URL;
-                    options.ClientId = "estate-cost_bff";
-                    options.ClientSecret = "secret";
+                    options.ClientId = "estate-cost.web.bff";
+                    options.ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0";
                     options.ResponseType = "code";
                     options.ResponseMode = "query";
+
+                    options.RequireHttpsMetadata = false;
 
                     options.GetClaimsFromUserInfoEndpoint = true;
                     options.SaveTokens = true;
@@ -71,27 +68,44 @@ namespace estate_cost.web.bff
         {
             var appSettings = app.Configuration.Get<AppSettings>();
 
+            app.UseHsts();
+            app.UseHttpsRedirection();
+
             app.UseSerilogRequestLogging();
 
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseSpaStaticFiles();
+                app.UseSpa(conf =>
+                {
+                });
+            }
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
 
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseCors(conf =>
+                {
+                    conf.AllowAnyOrigin();
+                    conf.AllowAnyHeader();
+                });
+            }
+
             // add CSRF protection and status code handling for API endpoints
             app.UseBff();
+
             app.UseAuthorization();
 
             app.MapBffManagementEndpoints();
 
-            app.MapReverseProxy()
-                .AsBffApiEndpoint()
-                .RequireAccessToken();
+            // Anti-forgery protection
+            app.MapBffReverseProxy();
 
             return app;
         }

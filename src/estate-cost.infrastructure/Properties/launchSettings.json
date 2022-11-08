@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "estate-cost.infrastructure": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:12851;http://localhost:12852"
+    }
+  }
+}

@@ -17,8 +17,8 @@
 
         <ya-map [center]="[55.751952, 37.600739]" [zoom]="8" [state]="{ controls: [] }">
             <ya-clusterer [options]="{gridSize: 32}">
-<!--                <ya-placemark (yaclick)="getMapPanelInfo(1)" *ngFor="let item of mapContents"-->
-<!--                            [geometry]="mapContents"></ya-placemark>-->
+                <ya-placemark (yaclick)="getMapPanelInfo(1)" *ngFor="let item of mapContents"
+                            [geometry]="item.coordinates"></ya-placemark>
             </ya-clusterer>
         </ya-map>
 

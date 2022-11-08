@@ -6,7 +6,6 @@ import Tus from "@uppy/tus";
 import {ru_RU} from "../../core/services/uppy-locales";
 import {StateDataService} from "../../core/services/stateData.service";
 export interface IMapItem {
-  purchaseId: number,
   coordinates: number[]
 }
 @Component({
@@ -16,7 +15,7 @@ export interface IMapItem {
 })
 export class MainComponent implements OnInit {
 
-  uppy = new Uppy()
+  uppy = new Uppy();
   mapContents: Array<IMapItem> = [];
   mapPanelOpen = false;
 
@@ -36,7 +35,12 @@ export class MainComponent implements OnInit {
   }
 
   geometriesListener(): void {
-    // this.mapContents = this.stateDataService.geometries;
+    this.stateDataService.stateObjects$.subscribe(x => {
+      this.mapContents = this.stateDataService.getGeometries();
+      console.log(this.stateDataService.getGeometries())
+    })
+
+    // console.log(this.stateDataService.getGeometries().coordinates);
   }
 
 }

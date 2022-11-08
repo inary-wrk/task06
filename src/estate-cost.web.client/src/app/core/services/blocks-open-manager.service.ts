@@ -1,13 +1,14 @@
 import {Injectable} from "@angular/core";
+import {StateDataService} from "./stateData.service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class BlocksOpenManagerService {
-  showStartObjectPanel: boolean = false;
+  showStartObjectPanel: boolean = true;
   historyWindowOpen: boolean = false;
-  defaultObjectsPanelContentShow: boolean = true;
+  defaultObjectsPanelContentShow: boolean = false;
   historyObjectsPanelContentShow: boolean = false;
   objectCardWindowOpen: boolean = false;
   analogWindowOpen: boolean = false;
@@ -17,7 +18,8 @@ export class BlocksOpenManagerService {
   objectWindowOnTop: boolean;
   analogWindowOnTop: boolean;
   objectWindowMobileVisible: boolean = false;
-  constructor() {
+  constructor(private stateDataService: StateDataService) {
+    console.log(stateDataService.isFileLoaded)
   }
 
   setHistoryWindowOnTop(value: boolean): void {

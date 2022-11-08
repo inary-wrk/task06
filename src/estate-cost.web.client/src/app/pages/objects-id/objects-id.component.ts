@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BlocksOpenManagerService} from "../../core/services/blocks-open-manager.service";
+import {StateDataService} from "../../core/services/stateData.service";
+import {EstateResponse_SingleEstate} from "../../core/Client";
 
 @Component({
   selector: 'app-objects-id',
@@ -9,10 +11,18 @@ import {BlocksOpenManagerService} from "../../core/services/blocks-open-manager.
 export class ObjectsIdComponent implements OnInit {
 
   showAnalogWindow = false;
-
-  constructor(private blocksManager: BlocksOpenManagerService) { }
+  stateitem: EstateResponse_SingleEstate;
+  constructor(private blocksManager: BlocksOpenManagerService, private stateDataService: StateDataService) { }
 
   ngOnInit(): void {
+    this.getDataByObjectId();
+  }
+
+  getDataByObjectId(): void {
+    this.stateDataService.getObjectDataById().subscribe(x => {
+      this.stateitem = x;
+      console.log(this.stateitem)
+    })
   }
 
   setObjectCardWindowOpen(value: boolean): void {

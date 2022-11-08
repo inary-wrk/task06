@@ -8,7 +8,7 @@ using Serilog;
 
 namespace estate_cost.identity_server
 {
-    public class SeedData
+    public static class SeedData
     {
         public static void EnsureSeedData(WebApplication app)
         {

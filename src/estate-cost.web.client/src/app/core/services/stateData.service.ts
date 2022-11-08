@@ -1,14 +1,17 @@
-import {Client, SessionsResponse_Session} from "../Client";
+import {Client, SessionsResponse_Session, SessionsResponse_SingleEstate} from "../Client";
 import {Observable, Subject} from "rxjs";
 import {Injectable} from "@angular/core";
+import {IMapItem} from "../../pages/main/main.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateDataService {
-  private stateObjects: Subject<SessionsResponse_Session> = new Subject<SessionsResponse_Session>();
+  private stateObjects: Subject<SessionsResponse_Session | null> = new Subject<SessionsResponse_Session | null>();
   public stateObjects$ = this.stateObjects.asObservable();
-  geometries: Array<{} | undefined> | null = new Array<{} | undefined>();
+  objectId: number | undefined;
+  private geometries: Array<IMapItem> = [];
+  isFileLoaded: boolean;
   constructor(private client: Client) {
   }
 
@@ -19,11 +22,26 @@ export class StateDataService {
     }
 
     this.client.state().subscribe(x => {
-      this.geometries = null;
-      x.estatePool?.forEach(x => {
-      this.geometries?.push(x.coordinates)
+      this.geometries = [];
+      x.estatePool?.forEach((x: SessionsResponse_SingleEstate) => {
+        if (x.coordinates) {
+          const coordinates = [x.coordinates.latitude, x.coordinates.longitude];
+          this.geometries.push(<IMapItem>{coordinates});
+        }
       })
       this.stateObjects.next(x);
     })
+  }
+  setObjectDataById(id: number | undefined): void {
+    this.objectId = id;
+  }
+  getObjectDataById(): Observable<any> {
+    return this.client.estate(Number(this.objectId));
+  }
+  clearStateItems(): void {
+    this.stateObjects.next(null);
+  }
+  getGeometries(): any {
+    return this.geometries;
   }
 }

@@ -55,7 +55,10 @@ namespace estate_cost.identity_server
                     // this enables automatic token cleanup. this is optional.
                     options.EnableTokenCleanup = true;
                     options.TokenCleanupInterval = 30;
-                });
+                })
+                .AddInMemoryClients(Config.Clients)
+                .AddInMemoryApiScopes(Config.ApiScopes)
+                .AddInMemoryIdentityResources(Config.IdentityResources);
 
             builder.Services.AddAuthentication();
 
@@ -64,6 +67,8 @@ namespace estate_cost.identity_server
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {
+            SeedData.EnsureSeedData(app);
+
             app.UseSerilogRequestLogging();
 
             if (app.Environment.IsDevelopment())

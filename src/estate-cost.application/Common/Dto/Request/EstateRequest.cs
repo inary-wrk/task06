@@ -9,16 +9,20 @@ namespace estate_cost.application.Common.Dto.Request
 {
     public static class EstateRequest
     {
-        public record EvaluateSettings(IList<long> DisabledEstateAnalogs, Correction Correction);
+        public record EvaluateSettings(IList<AnalogChanges> EstateAnalogChanges);
 
-        public record struct Correction(float Haggle,
-                                        float Area,
-                                        float MetroDistance,
-                                        float Floor,
-                                        float Rooms,
-                                        float KitchenArea,
-                                        float Balcon,
-                                        float RepairState);
+        public record AnalogChanges(long AnalogId,
+                                    Correction Correction,
+                                    bool IsEnabled);
+
+        public record struct Correction(bool Haggle,
+                                        bool Area,
+                                        bool MetroDistance,
+                                        bool Floor,
+                                        bool Rooms,
+                                        bool KitchenArea,
+                                        bool Balcon,
+                                        bool RepairState);
 
         public record SingleEstate(string Location,
                                    int Rooms,
@@ -32,6 +36,11 @@ namespace estate_cost.application.Common.Dto.Request
                                    int MetroRangeMin,
                                    string DecorationState);
 
-        public record ChangedEstate(long? Id, SingleEstate Estate, bool IsDeleted);
+
+
+
+        public record ChangedEstate(long? Id,
+                                    SingleEstate Estate,
+                                    bool IsDeleted);
     }
 }

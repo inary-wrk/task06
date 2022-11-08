@@ -5,8 +5,8 @@ import Dashboard from '@uppy/dashboard';
 import { ru_RU } from '../../core/services/uppy-locales';
 import XHRUpload from '@uppy/xhr-upload';
 import { BlocksOpenManagerService } from '../../core/services/blocks-open-manager.service';
-import {StateDataService} from "../../core/services/stateData.service";
-import {SessionsResponse_Session} from "../../core/Client";
+import { StateDataService } from '../../core/services/stateData.service';
+import { SessionsResponse_Session } from '../../core/Client';
 
 @Component({
   selector: 'app-objects-default',
@@ -17,10 +17,12 @@ export class ObjectsDefaultComponent implements OnInit {
   objectWindowMinimize = false;
 
   uppy = new Uppy();
-  flatItem: SessionsResponse_Session;
+  flatItem: SessionsResponse_Session | null;
   objectCardWindowOpen: boolean;
-  constructor(private blocksManager: BlocksOpenManagerService,
-              private stateDataService: StateDataService) {
+  constructor(
+    private blocksManager: BlocksOpenManagerService,
+    private stateDataService: StateDataService
+  ) {
     this.objectCardWindowOpen = blocksManager.objectCardWindowOpen;
   }
 
@@ -42,7 +44,7 @@ export class ObjectsDefaultComponent implements OnInit {
         },
       })
       .use(XHRUpload, {
-        endpoint: 'https://localhost:7079/api/sessions/fileupload',
+        endpoint: 'https://localhost:443/api/sessions/fileupload',
         getResponseError(responseText, xhr) {
           return Error(responseText);
         },
@@ -50,9 +52,9 @@ export class ObjectsDefaultComponent implements OnInit {
   }
 
   getFlats(): void {
-    this.stateDataService.stateObjects$.subscribe(x => {
-      this.flatItem = x
-    })
+    this.stateDataService.stateObjects$.subscribe((x) => {
+      this.flatItem = x;
+    });
   }
 
   setObjectCardWindowOpen(value: boolean): void {
@@ -77,5 +79,8 @@ export class ObjectsDefaultComponent implements OnInit {
   }
   setObjectWindowMobileVisible(value: boolean): void {
     this.blocksManager.objectWindowMobileVisible = value;
+  }
+  setObjectDataById(id: number | undefined): void {
+    this.stateDataService.setObjectDataById(id);
   }
 }

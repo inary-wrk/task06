@@ -3,11 +3,16 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>estate_cost.web.bff</RootNamespace>
     <UserSecretsId>8f2a3a29-7904-4543-907d-2c3443ddd56d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
+
+	<ItemGroup>
+		<None Include="wwwroot\*" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Duende.BFF.Yarp" Version="1.2.3" />
@@ -15,6 +20,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.11" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
     
@@ -22,9 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\estate-cost.web.client\estate-cost.web.client.esproj" >
-		<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-	</ProjectReference>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
-
+  
 </Project>

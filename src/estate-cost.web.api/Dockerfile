@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/estate-cost.web.api/estate-cost.web.api.csproj", "src/estate-cost.web.api/"]
+COPY ["src/estate-cost.application/estate-cost.application.csproj", "src/estate-cost.application/"]
 RUN dotnet restore "src/estate-cost.web.api/estate-cost.web.api.csproj"
 COPY . .
 WORKDIR "/src/src/estate-cost.web.api"

@@ -1,4 +1,5 @@
-﻿using estate_cost.application.Common.Dto.Request;
+﻿using System;
+using estate_cost.application.Common.Dto.Request;
 using estate_cost.application.Common.Dto.Response;
 using Ganss.Excel;
 using Microsoft.AspNetCore.Authorization;
@@ -32,7 +33,8 @@ namespace estate_cost.web.api.Controllers
                                                 DateTime.UtcNow,
                                                 DateTime.UtcNow,
                                                 new(),
-                                                new List<SessionsResponse.SingleEstate>(),
+                                                new List<SessionsResponse.SingleEstate>() { new (0,"Ул.Одесская",3,1,100,new(55.751952, 37.600739), 999999),
+                                                new (0,"Ул.Комсомольская",3,1,100,new(37.600739, 55.751952), 999999)},
                                                 new(new(
                                                          3246,
                                                          "fdsa",
@@ -45,11 +47,11 @@ namespace estate_cost.web.api.Controllers
         }
 
         /// <summary>
-        /// Изменить текущую сессию на заданную <paramref name="sessionId"/>
+        /// Переключить сессию на заданную <paramref name="sessionId"/>
         /// </summary>
-        /// <remarks>Если какое-либо значение не задано, используется последняя по дате.</remarks>
-        [HttpOptions("change")]
-        public IActionResult ChangeSession([FromQuery] long? sessionId)
+        /// <remarks>Если <paramref name="sessionId"/> не задано, используется последняя по дате.</remarks>
+        [HttpOptions("switch")]
+        public IActionResult SwitchSession([FromQuery] long? sessionId)
         {
             return Ok();
         }
@@ -73,7 +75,7 @@ namespace estate_cost.web.api.Controllers
         /// Загрузка файла с пулом недвижимости.
         /// </summary>
         [HttpPost("fileupload")]
-        public async Task<IActionResult> UploadFile(IFormFile file, CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<SessionsRequest.EstateExcelFileModel>>> UploadFile(IFormFile file, CancellationToken cancellationToken)
         {
             using var stream = file.OpenReadStream();
 
@@ -100,9 +102,9 @@ namespace estate_cost.web.api.Controllers
             mapper.AddMapping<SessionsRequest.EstateExcelFileModel>(6, prop => prop.MetroRangeMin);
             mapper.AddMapping<SessionsRequest.EstateExcelFileModel>(6, prop => prop.DecorationState);
 
-            var estateList = await mapper.FetchAsync<SessionsRequest.EstateExcelFileModel>(stream);
+            var result = mapper.Fetch<SessionsRequest.EstateExcelFileModel>();
 
-            return Ok();
+            return Ok(result);
         }
     }
 }

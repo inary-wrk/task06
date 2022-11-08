@@ -6,6 +6,7 @@ import Tus from "@uppy/tus";
 import {BlocksOpenManagerService} from "../../core/services/blocks-open-manager.service";
 import {LogoutModalComponent} from "../logout-modal/logout-modal.component";
 import {MatDialog} from "@angular/material/dialog";
+import {StateDataService} from "../../core/services/stateData.service";
 
 export interface IFlatItem {
   name: string,
@@ -20,7 +21,8 @@ export interface IFlatItem {
   styleUrls: ['./under-map-layout.component.css']
 })
 export class UnderMapLayoutComponent implements OnInit {
-  constructor(private blocksManager: BlocksOpenManagerService, public dialog: MatDialog) {
+  constructor(private blocksManager: BlocksOpenManagerService, public dialog: MatDialog,
+              private stateDataService: StateDataService) {
 
   }
 

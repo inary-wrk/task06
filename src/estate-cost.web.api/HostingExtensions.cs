@@ -4,15 +4,9 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using tusdotnet;
-using tusdotnet.Models;
 using estate_cost.web.api.Configuration;
-using tusdotnet.Stores;
-using tusdotnet.Interfaces;
-using tusdotnet.Models.Expiration;
 using estate_cost.application.Common;
 using estate_cost.web.api.Helpers;
-using tusdotnet.Models.Configuration;
 
 namespace estate_cost.web.api
 {
@@ -38,8 +32,8 @@ namespace estate_cost.web.api
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {
-            app.UseHsts();
             app.UseHttpsRedirection();
+            app.UseHsts();
 
             if (app.Environment.IsDevelopment())
             {
@@ -53,12 +47,7 @@ namespace estate_cost.web.api
 
             app.UseRouting();
 
-            // TODO: @Semyon CORS?
-            app.UseCors(builder => builder
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowAnyOrigin()
-                .WithExposedHeaders(tusdotnet.Helpers.CorsHelper.GetExposedHeaders()));
+            app.UseCors();
 
             app.UseAuthentication();
 
